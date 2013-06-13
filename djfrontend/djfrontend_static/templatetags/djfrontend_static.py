@@ -129,9 +129,9 @@ def djfrontend_twbs_css():
     TEMPLATE_DEBUG returns full file, otherwise returns minified file.
     """
     if getattr(settings, 'TEMPLATE_DEBUG',):
-        return '<link rel="stylesheet" href="%sdjfrontend_static/css/bootstrap/bootstrap.css">' % settings.STATIC_URL
+        return '<link rel="stylesheet" href="%sdjfrontend_static/css/twbs/%s/bootstrap.css">' % settings.STATIC_URL
     else:
-        return '<link rel="stylesheet" href="%sdjfrontend_static/css/bootstrap/bootstrap.min.css">' % settings.STATIC_URL
+        return '<link rel="stylesheet" href="%sdjfrontend_static/css/twbs/%s/bootstrap.min.css">' % settings.STATIC_URL
 
 
 @register.simple_tag
