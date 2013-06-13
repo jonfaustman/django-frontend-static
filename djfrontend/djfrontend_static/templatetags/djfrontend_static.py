@@ -140,9 +140,9 @@ def djfrontend_twbs_responsive_css(v):
     TEMPLATE_DEBUG returns full file, otherwise returns minified file.
     """
     if getattr(settings, 'TEMPLATE_DEBUG',):
-        return '<link rel="stylesheet" href="%sdjfrontend_static/css/bootstrap/bootstrap-responsive.css">' % (settings.STATIC_URL, v)
+        return '<link rel="stylesheet" href="%sdjfrontend_static/css/twbs/%s/bootstrap-responsive.css">' % (settings.STATIC_URL, v)
     else:
-        return '<link rel="stylesheet" href="%sdjfrontend_static/css/bootstrap/bootstrap-responsive.min.css">' % (settings.STATIC_URL, v)
+        return '<link rel="stylesheet" href="%sdjfrontend_static/css/twbs/%s/bootstrap-responsive.min.css">' % (settings.STATIC_URL, v)
 
 
 @register.simple_tag
