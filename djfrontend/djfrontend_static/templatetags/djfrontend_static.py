@@ -124,25 +124,25 @@ def djfrontend_jqueryui(v):
 
 
 @register.simple_tag
-def djfrontend_twbs_css():
+def djfrontend_twbs_css(v):
     """ Returns Twitter Bootstrap CSS file.
     TEMPLATE_DEBUG returns full file, otherwise returns minified file.
     """
     if getattr(settings, 'TEMPLATE_DEBUG',):
-        return '<link rel="stylesheet" href="%sdjfrontend_static/css/bootstrap/bootstrap.css">' % settings.STATIC_URL
+        return '<link rel="stylesheet" href="%sdjfrontend_static/css/twbs/%s/bootstrap.css">' % (settings.STATIC_URL, v)
     else:
-        return '<link rel="stylesheet" href="%sdjfrontend_static/css/bootstrap/bootstrap.min.css">' % settings.STATIC_URL
+        return '<link rel="stylesheet" href="%sdjfrontend_static/css/twbs/%s/bootstrap.min.css">' % (settings.STATIC_URL, v)
 
 
 @register.simple_tag
-def djfrontend_twbs_responsive_css():
+def djfrontend_twbs_responsive_css(v):
     """ Returns Twitter Bootstrap responsive CSS file.
     TEMPLATE_DEBUG returns full file, otherwise returns minified file.
     """
     if getattr(settings, 'TEMPLATE_DEBUG',):
-        return '<link rel="stylesheet" href="%sdjfrontend_static/css/bootstrap/bootstrap-responsive.css">' % settings.STATIC_URL
+        return '<link rel="stylesheet" href="%sdjfrontend_static/css/bootstrap/bootstrap-responsive.css">' % (settings.STATIC_URL, v)
     else:
-        return '<link rel="stylesheet" href="%sdjfrontend_static/css/bootstrap/bootstrap-responsive.min.css">' % settings.STATIC_URL
+        return '<link rel="stylesheet" href="%sdjfrontend_static/css/bootstrap/bootstrap-responsive.min.css">' % (settings.STATIC_URL, v)
 
 
 @register.simple_tag
