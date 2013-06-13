@@ -185,7 +185,7 @@ def do_djfrontend_twbs_js(parser, token):
     return BootstrapJSNode(token.split_contents()[1:])
 
 
-SCRIPT_TAG = '<script src="%sdjfrontend_static/js/twbs/bootstrap-%s.js"></script>'
+SCRIPT_TAG = '<script src="%sdjfrontend_static/js/twbs/2.3.2/bootstrap-%s.js"></script>'
 
 class BootstrapJSNode(template.Node):
 
@@ -195,12 +195,12 @@ class BootstrapJSNode(template.Node):
     def render(self, context):
         if 'all' in self.args:
             if getattr(settings, 'TEMPLATE_DEBUG', ):
-                return '<script src="%sdjfrontend_static/js/twbs/bootstrap.js"></script>' % settings.STATIC_URL
+                return '<script src="%sdjfrontend_static/js/twbs/2.3.2/bootstrap.js"></script>' % settings.STATIC_URL
             else:
                 if hasattr(settings, 'DJFRONTEND_STATIC_URL'):
-                    return '<script src="%sdjfrontend_static/js/twbs/bootstrap.min.js"></script>' % settings.DJFRONTEND_STATIC_URL
+                    return '<script src="%sdjfrontend_static/js/twbs/2.3.2/bootstrap.min.js"></script>' % settings.DJFRONTEND_STATIC_URL
                 else:
-                    return '<script src="%sdjfrontend_static/js/twbs/bootstrap.min.js"></script>' % settings.STATIC_URL
+                    return '<script src="%sdjfrontend_static/js/twbs/2.3.2/bootstrap.min.js"></script>' % settings.STATIC_URL
         else:
             # popover requires tooltip
             if 'popover' in self.args:
