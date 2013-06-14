@@ -57,8 +57,29 @@ def djfrontend_jquery(v):
 
 
 @register.simple_tag
+def djfrontend_jqueryui(v):
+    """ Returns the jQuery UI plugin file according to version number.
+    TEMPLATE_DEBUG returns full file, otherwise returns minified file from Google CDN with local fallback.
+    """
+    if getattr(settings, 'TEMPLATE_DEBUG',):
+        return '<script src="%sdjfrontend_static/js/jquery/jqueryui/%s/jquery-ui.js"></script>' % (settings.STATIC_URL, v)
+    else:
+        if hasattr(settings, 'DJFRONTEND_STATIC_URL'):
+            output=[
+                '<script src="/ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>' % v,
+                '<script>window.jQueryUI || document.write(\'<script src="%sdjfrontend_static/js/jquery/jqueryui/%s/jquery-ui.min.js"><\/script>\')</script>' % (settings.DJFRONTEND_STATIC_URL, v)
+            ]
+        else:
+            output=[
+                '<script src="/ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>' % v,
+                '<script>window.jQueryUI || document.write(\'<script src="%sdjfrontend_static/js/jquery/jqueryui/%s/jquery-ui.min.js"><\/script>\')</script>' % (settings.STATIC_URL, v)
+            ]
+        return '\n'.join(output)
+
+
+@register.simple_tag
 def djfrontend_jquery_datatables(v):
-    """ Returns the jQuery dataTables plugin file according to version number.
+    """ Returns the jQuery DataTables plugin file according to version number.
     TEMPLATE_DEBUG returns full file, otherwise returns minified file.
     """
     if getattr(settings, 'TEMPLATE_DEBUG',):
@@ -72,7 +93,7 @@ def djfrontend_jquery_datatables(v):
 
 @register.simple_tag
 def djfrontend_jquery_datatables_css(v):
-    """ Returns the jQuery dataTables CSS file according to version number.
+    """ Returns the jQuery DataTables CSS file according to version number.
     """
     if getattr(settings, 'TEMPLATE_DEBUG',):
         return '<script src="%sdjfrontend_static/css/jquery/jquery.dataTables/%s/jquery.dataTables.css"></script>' % (settings.STATIC_URL, v)
@@ -83,7 +104,7 @@ def djfrontend_jquery_datatables_css(v):
 
 @register.simple_tag
 def djfrontend_jquery_formset(v):
-    """ Returns the jQuery Formset plugin file according to version number.
+    """ Returns the jQuery Dynamic Formset plugin file according to version number.
     TEMPLATE_DEBUG returns full file, otherwise returns minified file.
     """
     if getattr(settings, 'TEMPLATE_DEBUG',):
@@ -110,20 +131,6 @@ def djfrontend_jquery_smoothscroll(v):
 
 
 @register.simple_tag
-def djfrontend_jqueryui(v):
-    """ Returns the jQuery Smooth Scroll plugin file according to version number.
-    TEMPLATE_DEBUG returns full file, otherwise returns minified file.
-    """
-    if getattr(settings, 'TEMPLATE_DEBUG',):
-        return '<script src="%sdjfrontend_static/js/jquery/jqueryui/%s/jquery-ui.js"></script>' % (settings.STATIC_URL, v)
-    else:
-        if hasattr(settings, 'DJFRONTEND_STATIC_URL'):
-            return '<script src="%sdjfrontend_static/js/jquery/jquery-ui/%s/jquery-ui.min.js"></script>' % (settings.DJFRONTEND_STATIC_URL, v)
-        else:
-            return '<script src="%sdjfrontend_static/js/jquery/jquery-ui/%s/jquery-ui.min.js"></script>' % (settings.STATIC_URL, v)
-
-
-@register.simple_tag
 def djfrontend_twbs_css(v):
     """ Returns Twitter Bootstrap CSS file.
     TEMPLATE_DEBUG returns full file, otherwise returns minified file.
@@ -145,23 +152,6 @@ def djfrontend_twbs_responsive_css(v):
         return '<link rel="stylesheet" href="%sdjfrontend_static/css/twbs/%s/bootstrap-responsive.min.css">' % (settings.STATIC_URL, v)
 
 
-@register.simple_tag
-def djfrontend_ga(ua):
-    """ Returns Google Analytics asynchronous snippet.
-    Use DJANGOFRONTEND_GA_SETDOMAINNAME to set domain for multiple, or cross-domain tracking.
-    Set DJANGOFRONTEND_GA_SETALLOWLINKER to use _setAllowLinker method on target site for cross-domain tracking.
-    Included in HTML5 Boilerplate.
-    """
-    if getattr(settings, 'TEMPLATE_DEBUG',):
-        return ''
-    else:
-        if hasattr(settings, 'DJANGOFRONTEND_GA_SETDOMAINNAME',):
-            if hasattr(settings, 'DJANGOFRONTEND_GA_SETALLOWLINKER',):
-                return '<script>var _gaq=[["_setAccount","%s"],["_setDomainName","%s"],["_setAllowLinker", true],["_trackPageview"]];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src="//www.google-analytics.com/ga.js";s.parentNode.insertBefore(g,s)}(document,"script"));</script>' % (ua, settings.DJANGOFRONTEND_GA_SETDOMAINNAME)
-            else:
-                return '<script>var _gaq=[["_setAccount","%s"],["_setDomainName","%s"],["_trackPageview"]];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src="//www.google-analytics.com/ga.js";s.parentNode.insertBefore(g,s)}(document,"script"));</script>' % (ua, settings.DJANGOFRONTEND_GA_SETDOMAINNAME)
-        else:
-            return '<script>var _gaq=[["_setAccount","%s"],["_trackPageview"]];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src="//www.google-analytics.com/ga.js";s.parentNode.insertBefore(g,s)}(document,"script"));</script>' % ua
 @register.tag(name='djfrontend_twbs_js')
 def do_djfrontend_twbs_js(parser, token):
     """ Returns Twitter Bootstrap (2.3.2) JavaScript file(s).
@@ -217,3 +207,22 @@ def djfrontend_ios_fix():
     """ Returns the iOS-Orientationchange-Fix.
     """
     return '<script>/*! A fix for the iOS orientationchange zoom bug. Script by @scottjehl, rebound by @wilto.MIT / GPLv2 License.*/(function(a){function m(){d.setAttribute("content",g),h=!0}function n(){d.setAttribute("content",f),h=!1}function o(b){l=b.accelerationIncludingGravity,i=Math.abs(l.x),j=Math.abs(l.y),k=Math.abs(l.z),(!a.orientation||a.orientation===180)&&(i>7||(k>6&&j<8||k<8&&j>6)&&i>5)?h&&n():h||m()}var b=navigator.userAgent;if(!(/iPhone|iPad|iPod/.test(navigator.platform)&&/OS [1-5]_[0-9_]* like Mac OS X/i.test(b)&&b.indexOf("AppleWebKit")>-1))return;var c=a.document;if(!c.querySelector)return;var d=c.querySelector("meta[name=viewport]"),e=d&&d.getAttribute("content"),f=e+",maximum-scale=1",g=e+",maximum-scale=10",h=!0,i,j,k,l;if(!d)return;a.addEventListener("orientationchange",m,!1),a.addEventListener("devicemotion",o,!1)})(this);</script>'
+
+
+@register.simple_tag
+def djfrontend_ga(ua):
+    """ Returns Google Analytics asynchronous snippet.
+    Use DJFRONTEND_GA_SETDOMAINNAME to set domain for multiple, or cross-domain tracking.
+    Set DJFRONTEND_GA_SETALLOWLINKER to use _setAllowLinker method on target site for cross-domain tracking.
+    Included in HTML5 Boilerplate.
+    """
+    if getattr(settings, 'TEMPLATE_DEBUG',):
+        return ''
+    else:
+        if hasattr(settings, 'DJFRONTEND_GA_SETDOMAINNAME',):
+            if hasattr(settings, 'DJFRONTEND_GA_SETALLOWLINKER',):
+                return '<script>var _gaq=[["_setAccount","%s"],["_setDomainName","%s"],["_setAllowLinker", true],["_trackPageview"]];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src="//www.google-analytics.com/ga.js";s.parentNode.insertBefore(g,s)}(document,"script"));</script>' % (ua, settings.DJFRONTEND_GA_SETDOMAINNAME)
+            else:
+                return '<script>var _gaq=[["_setAccount","%s"],["_setDomainName","%s"],["_trackPageview"]];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src="//www.google-analytics.com/ga.js";s.parentNode.insertBefore(g,s)}(document,"script"));</script>' % (ua, settings.DJFRONTEND_GA_SETDOMAINNAME)
+        else:
+            return '<script>var _gaq=[["_setAccount","%s"],["_trackPageview"]];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src="//www.google-analytics.com/ga.js";s.parentNode.insertBefore(g,s)}(document,"script"));</script>' % ua
