@@ -10,8 +10,9 @@ djfrontend
 
 djfrontend_h5bp_html
 ~~~~~~~~~~~~~~~~~~~~~
+**Not a part of django-frontend-static but can be used inside one of the included template blocks if static files are added.**
+
 Returns HTML tag according to chosen language - 'en' is the default.
-Not a part of dfjango-frontend-template but can be used inside one of the included template blocks.
 ::
 
     <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
