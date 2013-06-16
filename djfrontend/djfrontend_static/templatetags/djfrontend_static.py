@@ -8,7 +8,7 @@ register = template.Library()
 def djfrontend_h5bp_css(v):
     """ Returns HTML5 Boilerplate CSS file.
     """
-    return '<link rel="stylesheet" href="%sdjfrontend_static/css/h5bp/%s/h5bp.css">' % (settings.STATIC_URL, v)
+    return '<link rel="stylesheet" href="%sdjfrontend/css/h5bp/%s/h5bp.css">' % (settings.STATIC_URL, v)
 
 
 @register.simple_tag
@@ -16,7 +16,7 @@ def djfrontend_normalize(v):
     """ Returns Normalize CSS file.
     Included in HTML5 Boilerplate.
     """
-    return '<link rel="stylesheet" href="%sdjfrontend_static/css/normalize/%s/normalize.css">' % (settings.STATIC_URL, v)
+    return '<link rel="stylesheet" href="%sdjfrontend/css/normalize/%s/normalize.css">' % (settings.STATIC_URL, v)
 
 
 @register.simple_tag
@@ -26,12 +26,12 @@ def djfrontend_modernizr(v):
     Included in HTML5 Boilerplate.
     """
     if getattr(settings, 'TEMPLATE_DEBUG',):
-        return '<script src="%sdjfrontend_static/js/modernizr/%s/modernizr.js"></script>' % (settings.STATIC_URL, v)
+        return '<script src="%sdjfrontend/js/modernizr/%s/modernizr.js"></script>' % (settings.STATIC_URL, v)
     else:
         if hasattr(settings, 'DJFRONTEND_STATIC_URL'):
-            return '<script src="%sdjfrontend_static/js/modernizr/%s/modernizr.min.js"></script>' % (settings.DJFRONTEND_STATIC_URL, v)
+            return '<script src="%sdjfrontend/js/modernizr/%s/modernizr.min.js"></script>' % (settings.DJFRONTEND_STATIC_URL, v)
         else:
-            return '<script src="%sdjfrontend_static/js/modernizr/%s/modernizr.min.js"></script>' % (settings.STATIC_URL, v)
+            return '<script src="%sdjfrontend/js/modernizr/%s/modernizr.min.js"></script>' % (settings.STATIC_URL, v)
 
 
 @register.simple_tag
@@ -41,17 +41,17 @@ def djfrontend_jquery(v):
     Included in HTML5 Boilerplate.
     """
     if getattr(settings, 'TEMPLATE_DEBUG',):
-        return '<script src="%sdjfrontend_static/js/jquery/%s/jquery.js"></script>' % (settings.STATIC_URL, v)
+        return '<script src="%sdjfrontend/js/jquery/%s/jquery.js"></script>' % (settings.STATIC_URL, v)
     else:
         if hasattr(settings, 'DJFRONTEND_STATIC_URL'):
             output=[
                 '<script src="//ajax.googleapis.com/ajax/libs/jquery/%s/jquery.min.js"></script>' % v,
-                '<script>window.jQuery || document.write(\'<script src="%sdjfrontend_static/js/jquery/%s/jquery.min.js"><\/script>\')</script>' % (settings.DJFRONTEND_STATIC_URL, v)
+                '<script>window.jQuery || document.write(\'<script src="%sdjfrontend/js/jquery/%s/jquery.min.js"><\/script>\')</script>' % (settings.DJFRONTEND_STATIC_URL, v)
             ]
         else:
             output=[
                 '<script src="//ajax.googleapis.com/ajax/libs/jquery/%s/jquery.min.js"></script>' % v,
-                '<script>window.jQuery || document.write(\'<script src="%sdjfrontend_static/js/jquery/%s/jquery.min.js"><\/script>\')</script>' % (settings.STATIC_URL, v)
+                '<script>window.jQuery || document.write(\'<script src="%sdjfrontend/js/jquery/%s/jquery.min.js"><\/script>\')</script>' % (settings.STATIC_URL, v)
             ]
         return '\n'.join(output)
 
@@ -62,17 +62,17 @@ def djfrontend_jqueryui(v):
     TEMPLATE_DEBUG returns full file, otherwise returns minified file from Google CDN with local fallback.
     """
     if getattr(settings, 'TEMPLATE_DEBUG',):
-        return '<script src="%sdjfrontend_static/js/jquery/jqueryui/%s/jquery-ui.js"></script>' % (settings.STATIC_URL, v)
+        return '<script src="%sdjfrontend/js/jquery/jqueryui/%s/jquery-ui.js"></script>' % (settings.STATIC_URL, v)
     else:
         if hasattr(settings, 'DJFRONTEND_STATIC_URL'):
             output=[
                 '<script src="//ajax.googleapis.com/ajax/libs/jqueryui/%s/jquery-ui.min.js"></script>' % v,
-                '<script>window.jQueryUI || document.write(\'<script src="%sdjfrontend_static/js/jquery/jqueryui/%s/jquery-ui.min.js"><\/script>\')</script>' % (settings.DJFRONTEND_STATIC_URL, v)
+                '<script>window.jQueryUI || document.write(\'<script src="%sdjfrontend/js/jquery/jqueryui/%s/jquery-ui.min.js"><\/script>\')</script>' % (settings.DJFRONTEND_STATIC_URL, v)
             ]
         else:
             output=[
                 '<script src="//ajax.googleapis.com/ajax/libs/jqueryui/%s/jquery-ui.min.js"></script>' % v,
-                '<script>window.jQueryUI || document.write(\'<script src="%sdjfrontend_static/js/jquery/jqueryui/%s/jquery-ui.min.js"><\/script>\')</script>' % (settings.STATIC_URL, v)
+                '<script>window.jQueryUI || document.write(\'<script src="%sdjfrontend/js/jquery/jqueryui/%s/jquery-ui.min.js"><\/script>\')</script>' % (settings.STATIC_URL, v)
             ]
         return '\n'.join(output)
 
@@ -83,12 +83,12 @@ def djfrontend_jquery_datatables(v):
     TEMPLATE_DEBUG returns full file, otherwise returns minified file.
     """
     if getattr(settings, 'TEMPLATE_DEBUG',):
-        return '<script src="%sdjfrontend_static/js/jquery/jquery.dataTables/%s/jquery.dataTables.js"></script>' % (settings.STATIC_URL, v)
+        return '<script src="%sdjfrontend/js/jquery/jquery.dataTables/%s/jquery.dataTables.js"></script>' % (settings.STATIC_URL, v)
     else:
         if hasattr(settings, 'DJFRONTEND_STATIC_URL'):
-            return '<script src="%sdjfrontend_static/js/jquery/jquery.dataTables/%s/jquery.dataTables.min.js"></script>' % (settings.DJFRONTEND_STATIC_URL, v)
+            return '<script src="%sdjfrontend/js/jquery/jquery.dataTables/%s/jquery.dataTables.min.js"></script>' % (settings.DJFRONTEND_STATIC_URL, v)
         else:
-            return '<script src="%sdjfrontend_static/js/jquery/jquery.dataTables/%s/jquery.dataTables.min.js"></script>' % (settings.STATIC_URL, v)
+            return '<script src="%sdjfrontend/js/jquery/jquery.dataTables/%s/jquery.dataTables.min.js"></script>' % (settings.STATIC_URL, v)
 
 
 @register.simple_tag
@@ -96,10 +96,10 @@ def djfrontend_jquery_datatables_css(v):
     """ Returns the jQuery DataTables CSS file according to version number.
     """
     if getattr(settings, 'TEMPLATE_DEBUG',):
-        return '<script src="%sdjfrontend_static/css/jquery/jquery.dataTables/%s/jquery.dataTables.css"></script>' % (settings.STATIC_URL, v)
+        return '<script src="%sdjfrontend/css/jquery/jquery.dataTables/%s/jquery.dataTables.css"></script>' % (settings.STATIC_URL, v)
     else:
         if hasattr(settings, 'DJFRONTEND_STATIC_URL'):
-            return '<script src="%sdjfrontend_static/css/jquery/jquery.dataTables/%s/jquery.dataTables.css"></script>' % (settings.DJFRONTEND_STATIC_URL, v)
+            return '<script src="%sdjfrontend/css/jquery/jquery.dataTables/%s/jquery.dataTables.css"></script>' % (settings.DJFRONTEND_STATIC_URL, v)
 
 
 @register.simple_tag
@@ -108,12 +108,12 @@ def djfrontend_jquery_formset(v):
     TEMPLATE_DEBUG returns full file, otherwise returns minified file.
     """
     if getattr(settings, 'TEMPLATE_DEBUG',):
-        return '<script src="%sdjfrontend_static/js/jquery/jquery.formset/%s/jquery.formset.js"></script>' % (settings.STATIC_URL, v)
+        return '<script src="%sdjfrontend/js/jquery/jquery.formset/%s/jquery.formset.js"></script>' % (settings.STATIC_URL, v)
     else:
         if hasattr(settings, 'DJFRONTEND_STATIC_URL'):
-            return '<script src="%sdjfrontend_static/js/jquery/jquery.formset/%s/jquery.formset.min.js"></script>' % (settings.DJFRONTEND_STATIC_URL, v)
+            return '<script src="%sdjfrontend/js/jquery/jquery.formset/%s/jquery.formset.min.js"></script>' % (settings.DJFRONTEND_STATIC_URL, v)
         else:
-            return '<script src="%sdjfrontend_static/js/jquery/jquery.formset/%s/jquery.formset.min.js"></script>' % (settings.STATIC_URL, v)
+            return '<script src="%sdjfrontend/js/jquery/jquery.formset/%s/jquery.formset.min.js"></script>' % (settings.STATIC_URL, v)
 
 
 @register.simple_tag
@@ -122,12 +122,12 @@ def djfrontend_jquery_smoothscroll(v):
     TEMPLATE_DEBUG returns full file, otherwise returns minified file.
     """
     if getattr(settings, 'TEMPLATE_DEBUG',):
-        return '<script src="%sdjfrontend_static/js/jquery/jquery.smooth-scroll/%s/jquery.smooth-scroll.js"></script>' % (settings.STATIC_URL, v)
+        return '<script src="%sdjfrontend/js/jquery/jquery.smooth-scroll/%s/jquery.smooth-scroll.js"></script>' % (settings.STATIC_URL, v)
     else:
         if hasattr(settings, 'DJFRONTEND_STATIC_URL'):
-            return '<script src="%sdjfrontend_static/js/jquery/jquery.smooth-scroll/%s/jquery.smooth-scroll.min.js"></script>' % (settings.DJFRONTEND_STATIC_URL, v)
+            return '<script src="%sdjfrontend/js/jquery/jquery.smooth-scroll/%s/jquery.smooth-scroll.min.js"></script>' % (settings.DJFRONTEND_STATIC_URL, v)
         else:
-            return '<script src="%sdjfrontend_static/js/jquery/jquery.smooth-scroll/%s/jquery.smooth-scroll.min.js"></script>' % (settings.STATIC_URL, v)
+            return '<script src="%sdjfrontend/js/jquery/jquery.smooth-scroll/%s/jquery.smooth-scroll.min.js"></script>' % (settings.STATIC_URL, v)
 
 
 @register.simple_tag
@@ -136,9 +136,9 @@ def djfrontend_twbs_css(v):
     TEMPLATE_DEBUG returns full file, otherwise returns minified file.
     """
     if getattr(settings, 'TEMPLATE_DEBUG',):
-        return '<link rel="stylesheet" href="%sdjfrontend_static/css/twbs/%s/bootstrap.css">' % (settings.STATIC_URL, v)
+        return '<link rel="stylesheet" href="%sdjfrontend/css/twbs/%s/bootstrap.css">' % (settings.STATIC_URL, v)
     else:
-        return '<link rel="stylesheet" href="%sdjfrontend_static/css/twbs/%s/bootstrap.min.css">' % (settings.STATIC_URL, v)
+        return '<link rel="stylesheet" href="%sdjfrontend/css/twbs/%s/bootstrap.min.css">' % (settings.STATIC_URL, v)
 
 
 @register.simple_tag
@@ -147,9 +147,9 @@ def djfrontend_twbs_responsive_css(v):
     TEMPLATE_DEBUG returns full file, otherwise returns minified file.
     """
     if getattr(settings, 'TEMPLATE_DEBUG',):
-        return '<link rel="stylesheet" href="%sdjfrontend_static/css/twbs/%s/bootstrap-responsive.css">' % (settings.STATIC_URL, v)
+        return '<link rel="stylesheet" href="%sdjfrontend/css/twbs/%s/bootstrap-responsive.css">' % (settings.STATIC_URL, v)
     else:
-        return '<link rel="stylesheet" href="%sdjfrontend_static/css/twbs/%s/bootstrap-responsive.min.css">' % (settings.STATIC_URL, v)
+        return '<link rel="stylesheet" href="%sdjfrontend/css/twbs/%s/bootstrap-responsive.min.css">' % (settings.STATIC_URL, v)
 
 
 @register.tag(name='djfrontend_twbs_js')
@@ -175,7 +175,7 @@ def do_djfrontend_twbs_js(parser, token):
     return BootstrapJSNode(token.split_contents()[1:])
 
 
-SCRIPT_TAG = '<script src="%sdjfrontend_static/js/twbs/2.3.2/bootstrap-%s.js"></script>'
+SCRIPT_TAG = '<script src="%sdjfrontend/js/twbs/2.3.2/bootstrap-%s.js"></script>'
 
 class BootstrapJSNode(template.Node):
 
@@ -185,12 +185,12 @@ class BootstrapJSNode(template.Node):
     def render(self, context):
         if 'all' in self.args:
             if getattr(settings, 'TEMPLATE_DEBUG', ):
-                return '<script src="%sdjfrontend_static/js/twbs/2.3.2/bootstrap.js"></script>' % settings.STATIC_URL
+                return '<script src="%sdjfrontend/js/twbs/2.3.2/bootstrap.js"></script>' % settings.STATIC_URL
             else:
                 if hasattr(settings, 'DJFRONTEND_STATIC_URL'):
-                    return '<script src="%sdjfrontend_static/js/twbs/2.3.2/bootstrap.min.js"></script>' % settings.DJFRONTEND_STATIC_URL
+                    return '<script src="%sdjfrontend/js/twbs/2.3.2/bootstrap.min.js"></script>' % settings.DJFRONTEND_STATIC_URL
                 else:
-                    return '<script src="%sdjfrontend_static/js/twbs/2.3.2/bootstrap.min.js"></script>' % settings.STATIC_URL
+                    return '<script src="%sdjfrontend/js/twbs/2.3.2/bootstrap.min.js"></script>' % settings.STATIC_URL
         else:
             # popover requires tooltip
             if 'popover' in self.args:
