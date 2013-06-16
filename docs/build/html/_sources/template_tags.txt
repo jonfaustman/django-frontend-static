@@ -10,7 +10,7 @@ djfrontend
 
 djfrontend_h5bp_html
 ~~~~~~~~~~~~~~~~~~~~~
-**Not a part of django-frontend-static but can be used inside one of the included template blocks if static files are added.**
+**Not a direct part of django-frontend-static.**
 
 Returns HTML tag according to chosen language - 'en' is the default.
 ::
