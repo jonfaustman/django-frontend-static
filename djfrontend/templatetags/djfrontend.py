@@ -5,8 +5,23 @@ register = template.Library()
 
 
 @register.simple_tag
+def djfrontend_h5bp_html(lang):
+    """ Returns HTML tag according to chosen language.
+    Included in HTML5 Boilerplate.
+    """
+    output=[
+        '<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="%s"> <![endif]-->' % lang,
+        '<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="%s"> <![endif]-->' % lang,
+        '<!--[if IE 8]>    <html class="no-js lt-ie9" lang="%s"> <![endif]-->' % lang,
+        '<!--[if gt IE 8]><!--> <html class="no-js" lang="%s"> <!--<![endif]-->' % lang,
+    ]
+    return '\n'.join(output)
+
+
+@register.simple_tag
 def djfrontend_h5bp_css(v):
     """ Returns HTML5 Boilerplate CSS file.
+    Included in HTML5 Boilerplate.
     """
     return '<link rel="stylesheet" href="%sdjfrontend/css/h5bp/%s/h5bp.css">' % (settings.STATIC_URL, v)
 
@@ -203,13 +218,6 @@ class BootstrapJSNode(template.Node):
 
 
 @register.simple_tag
-def djfrontend_ios_fix():
-    """ Returns the iOS-Orientationchange-Fix.
-    """
-    return '<script>/*! A fix for the iOS orientationchange zoom bug. Script by @scottjehl, rebound by @wilto.MIT / GPLv2 License.*/(function(a){function m(){d.setAttribute("content",g),h=!0}function n(){d.setAttribute("content",f),h=!1}function o(b){l=b.accelerationIncludingGravity,i=Math.abs(l.x),j=Math.abs(l.y),k=Math.abs(l.z),(!a.orientation||a.orientation===180)&&(i>7||(k>6&&j<8||k<8&&j>6)&&i>5)?h&&n():h||m()}var b=navigator.userAgent;if(!(/iPhone|iPad|iPod/.test(navigator.platform)&&/OS [1-5]_[0-9_]* like Mac OS X/i.test(b)&&b.indexOf("AppleWebKit")>-1))return;var c=a.document;if(!c.querySelector)return;var d=c.querySelector("meta[name=viewport]"),e=d&&d.getAttribute("content"),f=e+",maximum-scale=1",g=e+",maximum-scale=10",h=!0,i,j,k,l;if(!d)return;a.addEventListener("orientationchange",m,!1),a.addEventListener("devicemotion",o,!1)})(this);</script>'
-
-
-@register.simple_tag
 def djfrontend_ga(ua):
     """ Returns Google Analytics asynchronous snippet.
     Use DJFRONTEND_GA_SETDOMAINNAME to set domain for multiple, or cross-domain tracking.
@@ -226,3 +234,10 @@ def djfrontend_ga(ua):
                 return '<script>var _gaq=[["_setAccount","%s"],["_setDomainName","%s"],["_trackPageview"]];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src="//www.google-analytics.com/ga.js";s.parentNode.insertBefore(g,s)}(document,"script"));</script>' % (ua, settings.DJFRONTEND_GA_SETDOMAINNAME)
         else:
             return '<script>var _gaq=[["_setAccount","%s"],["_trackPageview"]];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src="//www.google-analytics.com/ga.js";s.parentNode.insertBefore(g,s)}(document,"script"));</script>' % ua
+
+
+@register.simple_tag
+def djfrontend_ios_fix():
+    """ Returns the iOS-Orientationchange-Fix.
+    """
+    return '<script>/*! A fix for the iOS orientationchange zoom bug. Script by @scottjehl, rebound by @wilto.MIT / GPLv2 License.*/(function(a){function m(){d.setAttribute("content",g),h=!0}function n(){d.setAttribute("content",f),h=!1}function o(b){l=b.accelerationIncludingGravity,i=Math.abs(l.x),j=Math.abs(l.y),k=Math.abs(l.z),(!a.orientation||a.orientation===180)&&(i>7||(k>6&&j<8||k<8&&j>6)&&i>5)?h&&n():h||m()}var b=navigator.userAgent;if(!(/iPhone|iPad|iPod/.test(navigator.platform)&&/OS [1-5]_[0-9_]* like Mac OS X/i.test(b)&&b.indexOf("AppleWebKit")>-1))return;var c=a.document;if(!c.querySelector)return;var d=c.querySelector("meta[name=viewport]"),e=d&&d.getAttribute("content"),f=e+",maximum-scale=1",g=e+",maximum-scale=10",h=!0,i,j,k,l;if(!d)return;a.addEventListener("orientationchange",m,!1),a.addEventListener("devicemotion",o,!1)})(this);</script>'
