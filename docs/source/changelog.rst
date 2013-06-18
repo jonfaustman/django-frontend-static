@@ -1,6 +1,10 @@
 Changelog
 ==============
 
+1.0.1
+------
+* Moved Silk icons out of recursive img dirs.
+
 1.0.0
 ------
 * There was some wide-sweeping, non-backwards compatible changes - read carefully!
