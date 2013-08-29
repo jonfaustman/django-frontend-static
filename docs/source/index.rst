@@ -14,7 +14,7 @@ There are no templates included. If you want a skeleton application built on HTM
 Sunsetting
 -------------
 
-Django Frontend Static is sunsetting. After one more release cycles it will ofically be discontinued. Please transition to `django-frontend <https://github.com/jonfaustman/django-frontend>`_.
+Django Frontend Static is sunsetting. After one more release cycle it will ofically be discontinued. Please transition to `django-frontend <https://github.com/jonfaustman/django-frontend>`_.
 
 While continuing to use Django Frontend Static, be sure to force upgrade to avoid namespacing issues.
 

@@ -1,9 +1,13 @@
 Changelog
 ==============
 
-1.1.1
+1.1.2
 ------
 * Twitter Bootstrap updated to v3.0.0 RC2
+
+1.1.1
+------
+* Fixed missing static files.
 
 1.1.0
 ------
