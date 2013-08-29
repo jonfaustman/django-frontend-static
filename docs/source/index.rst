@@ -14,7 +14,7 @@ There are no templates included. If you want a skeleton application built on HTM
 Sunsetting
 -------------
 
-Django Frontend Static is sunsetting. After two more release cycles it will ofically be discontinued. Please transition to `django-frontend <https://github.com/jonfaustman/django-frontend>`_.
+Django Frontend Static is sunsetting. After one more release cycle it will ofically be discontinued. Please transition to `django-frontend <https://github.com/jonfaustman/django-frontend>`_.
 
 While continuing to use Django Frontend Static, be sure to force upgrade to avoid namespacing issues.
 
@@ -29,7 +29,7 @@ Starring
 * `jQuery DataTables (1.9.4) <https://github.com/DataTables/DataTables>`_
 * `jQuery Dynamic Formset (1.2) <https://code.google.com/p/django-dynamic-formset>`_
 * `jQuery Smooth Scroll (1.4.11) <https://github.com/kswedberg/jquery-smooth-scroll>`_
-* `Twitter Bootstrap (3.0.0 RC1) <https://github.com/twbs/bootstrap>`_
+* `Twitter Bootstrap (3.0.0 RC2) <https://github.com/twbs/bootstrap>`_
 * `iOS-Orientationchange-Fix <https://github.com/scottjehl/iOS-Orientationchange-Fix>`_
 * `famfamfam's Silk Icons <http://www.famfamfam.com/lab/icons/silk/>`_
 
