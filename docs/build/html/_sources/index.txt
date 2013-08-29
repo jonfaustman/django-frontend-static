@@ -10,13 +10,11 @@ There are no templates included. If you want a skeleton application built on HTM
 :Package: `https://pypi.python.org/pypi/django-frontend-static <https://pypi.python.org/pypi/django-frontend-static>`_
 :Source: `https://github.com/jonfaustman/django-frontend-static <https://github.com/jonfaustman/django-frontend-static>`_
 
+Inactive
 -------------
-Sunsetting
--------------
+Django Frontend Static is now inactive. Please use `django-frontend <https://github.com/jonfaustman/django-frontend>`_.
 
-Django Frontend Static is sunsetting. After one more release cycle it will ofically be discontinued. Please transition to `django-frontend <https://github.com/jonfaustman/django-frontend>`_.
-
-While continuing to use Django Frontend Static, be sure to force upgrade to avoid namespacing issues.
+While continuing to use Django Frontend Static, be sure to force upgrade to avoid namespacing problems.
 
 `Read this article <http://jonfaustman.com/2013/08/07/django-frontend/>`_ for more information.
 

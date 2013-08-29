@@ -9,10 +9,10 @@ With the convenience of an installable Django application, easily add some of th
 There are no templates included. If you want a skeleton application built on HTML5 Boilerplate and Twitter Bootstrap then checkout `django-frontend-skeleton <https://github.com/jonfaustman/django-frontend-skeleton>`_. If you want a light-weight template built on HTML5 Boilerplate without any static files then check out `django-frontend-template <https://github.com/jonfaustman/django-frontend-template>`_.
 
 -------------
-Sunsetting
+Inactive
 -------------
 
-Django Frontend Static is sunsetting. After one more release cycle it will ofically be discontinued. Please transition to `django-frontend <https://github.com/jonfaustman/django-frontend>`_.
+Django Frontend Static is now inactive. Please use `django-frontend <https://github.com/jonfaustman/django-frontend>`_.
 
 While continuing to use Django Frontend Static, be sure to force upgrade to avoid namespacing problems.
 

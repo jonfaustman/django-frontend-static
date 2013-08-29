@@ -1,13 +1,13 @@
 from setuptools import setup, find_packages
 
-version = '1.1.2'
+version = '1.2.0'
 
 setup(name='django-frontend-static',
       version=version,
       description="A basic Django application to install often used static files.",
       long_description=open("README.rst", "r").read(),
       classifiers=[
-          "Development Status :: 5 - Production/Stable",
+          "Development Status :: 7 - Inactive",
           "Environment :: Web Environment",
           "Intended Audience :: End Users/Desktop",
           "Natural Language :: English",
